@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
+//
+const studentRoutes = require("./routes/studentRoutes");
 const dotenv = require("dotenv");
 //
 const app = express();
@@ -30,3 +32,4 @@ app.listen(process.env.PORT, () => {
 
 //
 app.use("/", userRoutes);
+app.use("/", studentRoutes);
