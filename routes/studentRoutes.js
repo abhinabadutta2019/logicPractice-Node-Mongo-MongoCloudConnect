@@ -32,22 +32,32 @@ router.get("/test", async (req, res) => {
   //allStudents array output
   let allStudents = await collection.find({}).toArray();
 
-  //length
-  console.log(allStudents.length, "length of that array");
   //////////////////////////////////////////////////////////////////
   //getting name of each item, with for loop
   let nameArray = [];
 
-  for (let index = 0; index < allStudents.length; index++) {
-    nameArray.push(allStudents[index].name);
+  for (let student = 0; student < allStudents.length; student++) {
+    //
+    const studentAge = allStudents[student].age;
+    if (studentAge > 34) {
+      nameArray.push(student);
+    }
   }
+
   console.log(nameArray, "loop method");
   ///////////////////////////////////////////////////////////////////
   //getting name of each item ,with map
 
-  let nameArraywithMap = allStudents.map((x) => x.name);
+  // let nameArraywithMap = [];
 
-  console.log(nameArraywithMap, "map method");
+  // console.log(nameArraywithMap, "map method");
+  //////////////////////////////////////////////////////////////////
+  //using filter
+
+  let arrayWithFilter = allStudents.filter((student) => student.age > 35);
+
+  console.log(arrayWithFilter, "filter method");
+  // console.log(arrayWithFilter.length);
   //
   res.send(allStudents);
 });
