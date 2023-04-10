@@ -34,30 +34,42 @@ router.get("/test", async (req, res) => {
 
   //////////////////////////////////////////////////////////////////
   //getting name of each item, with for loop
-  let nameArray = [];
+  // let nameArray = [];
 
-  for (let student = 0; student < allStudents.length; student++) {
-    //
-    const studentAge = allStudents[student].age;
-    if (studentAge > 34) {
-      nameArray.push(student);
-    }
-  }
+  // for (let student = 0; student < allStudents.length; student++) {
+  //   //
+  //   const studentAge = allStudents[student].age;
+  //   if (studentAge > 34) {
+  //     nameArray.push(student);
+  //   }
+  // }
 
-  console.log(nameArray, "loop method");
+  // console.log(nameArray, "loop method");
   ///////////////////////////////////////////////////////////////////
-  //getting name of each item ,with map
+  //using map and reduce
 
-  // let nameArraywithMap = [];
+  let arraywithMap = allStudents.map((student) => student.age);
+  console.log(arraywithMap, "map method");
 
-  // console.log(nameArraywithMap, "map method");
+  // reduce
+  let reduceValue = arraywithMap.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+
+  console.log(reduceValue, "reduceValue");
+
   //////////////////////////////////////////////////////////////////
   //using filter
 
-  let arrayWithFilter = allStudents.filter((student) => student.age > 35);
+  // let arrayWithFilter = allStudents.filter((student) => student.age > 35);
 
-  console.log(arrayWithFilter, "filter method");
+  // console.log(arrayWithFilter, "filter method");
   // console.log(arrayWithFilter.length);
+  ///////////////////////////////////////////////////////////////////////
+  //using reduce
+
+  //
   //
   res.send(allStudents);
 });
