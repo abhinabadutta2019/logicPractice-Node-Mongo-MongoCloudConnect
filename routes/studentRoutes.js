@@ -34,44 +34,47 @@ router.get("/test", async (req, res) => {
 
   //////////////////////////////////////////////////////////////////
   //getting name of each item, with for loop
-  // let nameArray = [];
 
-  // for (let student = 0; student < allStudents.length; student++) {
-  //   //
-  //   const studentAge = allStudents[student].age;
-  //   if (studentAge > 34) {
-  //     nameArray.push(student);
-  //   }
-  // }
+  let myArray = [];
 
-  // console.log(nameArray, "loop method");
+  for (let index = 0; index < allStudents.length; index++) {
+    //
+
+    if (allStudents[index].age >= 37) {
+      let overThirtySevenName = allStudents[index].name;
+      //
+      myArray.push(overThirtySevenName);
+    }
+  }
+
+  console.log(myArray, "loop method");
   ///////////////////////////////////////////////////////////////////
-  //using map and reduce
-
-  let arraywithMap = allStudents.map((student) => student.age);
-  console.log(arraywithMap, "map method");
 
   // reduce
-  let reduceValue = arraywithMap.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0
-  );
+  // let reduceValue = arraywithMap.reduce(
+  //   (accumulator, currentValue) => accumulator + currentValue,
+  //   0
+  // );
 
-  console.log(reduceValue, "reduceValue");
+  // console.log(reduceValue, "reduceValue");
 
   //////////////////////////////////////////////////////////////////
+
   //using filter
 
-  // let arrayWithFilter = allStudents.filter((student) => student.age > 35);
+  // let arrayWithFilter = allStudents.filter((student) => student.age > 37);
 
   // console.log(arrayWithFilter, "filter method");
   // console.log(arrayWithFilter.length);
-  ///////////////////////////////////////////////////////////////////////
-  //using reduce
+  // ///////////////////////////////////////////////////////////////////////
+  // //using map
+
+  // let arraywithMap = arrayWithFilter.map((student) => student.name);
+  // console.log(arraywithMap, "map method");
 
   //
   //
-  res.send(allStudents);
+  res.send();
 });
 
 module.exports = router;
