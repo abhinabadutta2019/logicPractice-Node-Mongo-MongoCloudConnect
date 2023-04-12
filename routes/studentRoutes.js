@@ -62,15 +62,15 @@ router.get("/test", async (req, res) => {
 
   //using filter
 
-  // let arrayWithFilter = allStudents.filter((student) => student.age > 37);
+  let arrayWithFilter = allStudents.filter((student) => student.age > 37);
 
-  // console.log(arrayWithFilter, "filter method");
-  // console.log(arrayWithFilter.length);
-  // ///////////////////////////////////////////////////////////////////////
-  // //using map
+  console.log(arrayWithFilter, "filter method");
+  console.log(arrayWithFilter.length);
+  ///////////////////////////////////////////////////////////////////////
+  //using map
 
-  // let arraywithMap = arrayWithFilter.map((student) => student.name);
-  // console.log(arraywithMap, "map method");
+  let arraywithMap = arrayWithFilter.map((student) => student.name);
+  console.log(arraywithMap, "map method");
 
   //
   //
