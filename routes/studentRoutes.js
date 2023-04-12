@@ -35,45 +35,50 @@ router.get("/test", async (req, res) => {
   //////////////////////////////////////////////////////////////////
   //getting name of each item, with for loop
 
-  let myArray = [];
+  // let myArray = [];
 
-  for (let index = 0; index < allStudents.length; index++) {
-    //
+  // for (let index = 0; index < allStudents.length; index++) {
+  //   //
 
-    if (allStudents[index].age >= 37) {
-      let overThirtySevenName = allStudents[index].name;
-      //
-      myArray.push(overThirtySevenName);
-    }
-  }
+  //   if (allStudents[index].age >= 37) {
+  //     let overThirtySevenName = allStudents[index].name;
+  //     //
+  //     myArray.push(overThirtySevenName);
+  //   }
+  // }
 
-  console.log(myArray, "loop method");
+  // console.log(myArray, "loop method");
   ///////////////////////////////////////////////////////////////////
-
-  // reduce
-  // let reduceValue = arraywithMap.reduce(
-  //   (accumulator, currentValue) => accumulator + currentValue,
-  //   0
-  // );
-
-  // console.log(reduceValue, "reduceValue");
 
   //////////////////////////////////////////////////////////////////
 
   //using filter
+  const filterArray = [];
+  //
+  allStudents.filter(function filterFunc(index) {
+    // console.log(index.myid, "aa");
+    if (!(index.myid > 5)) {
+      filterArray.push(index.age);
+    }
 
-  let arrayWithFilter = allStudents.filter((student) => student.age > 37);
+    // return allStudents[index];
+  });
 
-  console.log(arrayWithFilter, "filter method");
-  console.log(arrayWithFilter.length);
+  console.log(filterArray);
   ///////////////////////////////////////////////////////////////////////
+  // reduce
+  let reduceValue = filterArray.reduce(function reduceFunc(
+    accumulator,
+    curretValue
+  ) {
+    return accumulator + curretValue;
+  },
+  1.3);
+  // acctualy accumulator er value 0 hoi, icche kore , 1.33 diyechi
+
+  console.log(reduceValue);
   //using map
 
-  let arraywithMap = arrayWithFilter.map((student) => student.name);
-  console.log(arraywithMap, "map method");
-
-  //
-  //
   res.send();
 });
 
