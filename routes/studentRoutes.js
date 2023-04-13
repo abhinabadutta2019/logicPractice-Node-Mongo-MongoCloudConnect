@@ -48,41 +48,37 @@ router.get("/test", async (req, res) => {
   // }
 
   // console.log(myArray, "loop method");
-  ///////////////////////////////////////////////////////////////////
 
   //////////////////////////////////////////////////////////////////
-
   //using filter
-  const filterArray = [];
-  //
-  allStudents.filter(function filterFunc(index) {
-    // console.log(index.myid, "aa");
-    if (!(index.myid > 5)) {
-      filterArray.push(index.name);
+  let filterArray = [];
+
+  allStudents.filter(function filterFunc(item) {
+    if (item.age > 35) {
+      filterArray.push(item.age);
     }
-
-    // return allStudents[index];
   });
-
   console.log(filterArray);
-  ///////////////////////////////////////////////////////////////////////
-  // reduce
-  let reduceValue = filterArray.reduce(function reduceFunc(
-    accumulator,
-    curretValue
-  ) {
-    //
-    accumulator = accumulator + ", " + curretValue;
-    //
-    return accumulator;
-    // return accumulator + curretValue;
+  ///////////////////////////////////////////////////////////////////
+  //using map
+  let mapArray = [];
+
+  filterArray.map(function mapFunc(item) {
+    item = item + 5;
+    mapArray.push(item);
   });
-  // acctualy accumulator er value 0 hoi, icche kore , 1.33 diyechi
+  console.log(mapArray);
+  // ///////////////////////////////////////////////////////////////////////
+  // // reduce
+
+  let reduceValue = mapArray.reduce(function (accu, current) {
+    accu = accu + current;
+    return accu;
+  });
 
   console.log(reduceValue);
-  //using map
 
-  res.send();
+  res.send(allStudents);
 });
 
 module.exports = router;
