@@ -38,15 +38,12 @@ router.get("/test", async (req, res) => {
   allStudents.filter(function filterFunc(item) {
     if (item.age > 37) {
       //
-      const department = {
-        sun: "east",
-        Shift: "Morning",
-      };
-      //
-      const updatedItem = { ...item, ...department };
 
       //
-      filterArray.push(updatedItem);
+      const { _id, ...rest } = item;
+
+      //
+      filterArray.push({ _id, rest });
 
       //filterArray.push(item)
       //
@@ -55,13 +52,13 @@ router.get("/test", async (req, res) => {
   //output
   // {
   //   _id: new ObjectId("6433bcfbaf46095e1725266e"),
-  //   myid: 51,
-  //   name: 'Sharon Battle',
-  //   email: 'quam.pellentesque@protonmail.ca',
-  //   age: 38,
-  //   country: 'Chile',
-  //   sun: 'east',
-  //   Shift: 'Morning'
+  //   rest: {
+  //     myid: 51,
+  //     name: 'Sharon Battle',
+  //     email: 'quam.pellentesque@protonmail.ca',
+  //     age: 38,
+  //     country: 'Chile'
+  //   }
   // }
 
   console.log(filterArray);
