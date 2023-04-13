@@ -37,7 +37,7 @@ router.get("/test", async (req, res) => {
 
   allStudents.filter(function filterFunc(item) {
     if (item.age > 37) {
-      const updatedItem = { ...item, salary: 1222 };
+      const updatedItem = { ...item, country: "UK", salary: 1222 };
 
       //
       filterArray.push(updatedItem);
@@ -53,7 +53,7 @@ router.get("/test", async (req, res) => {
   //   name: 'Sharon Battle',
   //   email: 'quam.pellentesque@protonmail.ca',
   //   age: 38,
-  //   country: 'Chile',
+  //   country: 'UK',
   //   salary: 1222
   // }
   console.log(filterArray);
