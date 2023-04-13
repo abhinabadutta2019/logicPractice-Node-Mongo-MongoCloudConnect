@@ -42,6 +42,7 @@ router.get("/test", async (req, res) => {
       //filterArray.push(item)
     }
   });
+  //
   console.log(filterArray);
 
   res.send(allStudents);
