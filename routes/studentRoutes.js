@@ -37,10 +37,10 @@ router.get("/test", async (req, res) => {
 
   allStudents.filter(function filterFunc(item) {
     if (item.age > 37) {
-      const fields = ["_id", "email"];
-      const { [fields[0]]: id, [fields[1]]: fullName } = item;
+      const updatedItem = { ...item, salary: 1222 };
+
       //
-      filterArray.push({ id, fullName });
+      filterArray.push(updatedItem);
 
       //filterArray.push(item)
       //
@@ -48,8 +48,13 @@ router.get("/test", async (req, res) => {
   });
   //output
   // {
-  //   id: new ObjectId("6433bcfbaf46095e1725266e"),
-  //   fullName: 'quam.pellentesque@protonmail.ca'
+  //   _id: new ObjectId("6433bcfbaf46095e1725266e"),
+  //   myid: 51,
+  //   name: 'Sharon Battle',
+  //   email: 'quam.pellentesque@protonmail.ca',
+  //   age: 38,
+  //   country: 'Chile',
+  //   salary: 1222
   // }
   console.log(filterArray);
 
