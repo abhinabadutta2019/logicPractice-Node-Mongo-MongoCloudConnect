@@ -37,9 +37,9 @@ router.get("/test", async (req, res) => {
 
   allStudents.filter(function filterFunc(item) {
     if (item.age > 37) {
-      const { name } = item;
+      const { _id, name } = item;
       //
-      filterArray.push(name);
+      filterArray.push(name, _id);
 
       //filterArray.push(item)
       //
@@ -48,9 +48,13 @@ router.get("/test", async (req, res) => {
   //output
   // [
   //   'Shad Phelps',
+  //   new ObjectId("6433bcfbaf46095e17252693"),
   //   'Fuller Sullivan',
+  //   new ObjectId("6433bcfbaf46095e17252646"),
   //   'Lacota Hernandez',
-  //   'Sharon Battle'
+  //   new ObjectId("6433bcfbaf46095e17252653"),
+  //   'Sharon Battle',
+  //   new ObjectId("6433bcfbaf46095e1725266e")
   // ]
   console.log(filterArray);
 
