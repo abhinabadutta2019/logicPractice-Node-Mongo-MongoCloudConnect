@@ -40,10 +40,10 @@ router.get("/test", async (req, res) => {
       //
 
       //
-      const { _id, ...rest } = item;
+      const { _id, name, ...rest } = item;
 
       //
-      filterArray.push({ _id, rest });
+      filterArray.push({ _id, name, rest });
 
       //filterArray.push(item)
       //
@@ -52,9 +52,9 @@ router.get("/test", async (req, res) => {
   //output
   // {
   //   _id: new ObjectId("6433bcfbaf46095e1725266e"),
+  //   name: 'Sharon Battle',
   //   rest: {
   //     myid: 51,
-  //     name: 'Sharon Battle',
   //     email: 'quam.pellentesque@protonmail.ca',
   //     age: 38,
   //     country: 'Chile'
