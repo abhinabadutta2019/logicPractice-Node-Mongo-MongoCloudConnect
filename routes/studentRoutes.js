@@ -53,6 +53,16 @@ router.get("/test", async (req, res) => {
     }
   });
   //output
+  // {
+  //   _id: new ObjectId("6433bcfbaf46095e1725266e"),
+  //   myid: 51,
+  //   name: 'Sharon Battle',
+  //   email: 'quam.pellentesque@protonmail.ca',
+  //   age: 38,
+  //   country: 'Chile',
+  //   sun: 'east',
+  //   Shift: 'Morning'
+  // }
 
   console.log(filterArray);
 
