@@ -58,7 +58,7 @@ router.get("/test", async (req, res) => {
   allStudents.filter(function filterFunc(index) {
     // console.log(index.myid, "aa");
     if (!(index.myid > 5)) {
-      filterArray.push(index.age);
+      filterArray.push(index.name);
     }
 
     // return allStudents[index];
@@ -71,9 +71,12 @@ router.get("/test", async (req, res) => {
     accumulator,
     curretValue
   ) {
-    return accumulator + curretValue;
-  },
-  1.3);
+    //
+    accumulator = accumulator + ", " + curretValue;
+    //
+    return accumulator;
+    // return accumulator + curretValue;
+  });
   // acctualy accumulator er value 0 hoi, icche kore , 1.33 diyechi
 
   console.log(reduceValue);
