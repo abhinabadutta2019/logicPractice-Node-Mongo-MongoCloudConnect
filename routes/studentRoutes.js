@@ -40,6 +40,7 @@ router.get("/test", async (req, res) => {
       filterArray.push({ ...item });
 
       //filterArray.push(item)
+      //
     }
   });
   //
