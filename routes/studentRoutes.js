@@ -32,19 +32,6 @@ router.get("/test", async (req, res) => {
   //allStudents array output
   let allStudents = await collection.find({}).toArray();
 
-  //////////////////////////////////////////////////////////////////
-  //getting name of each item, with for loop
-
-  // let myArray = [];
-
-  // for (let index = 0; index < allStudents.length; index++) {
-  //   //
-
-  //   if (allStudents[index].age >= 37) {
-  //     let overThirtySevenName = allStudents[index].name;
-  //     //
-  //     myArray.push(overThirtySevenName);
-  //   }
   // }
 
   // console.log(myArray, "loop method");
@@ -54,30 +41,36 @@ router.get("/test", async (req, res) => {
   let filterArray = [];
 
   allStudents.filter(function filterFunc(item) {
-    if (item.age > 35) {
-      filterArray.push(item.age);
+    if (item.age > 37) {
+      filterArray.push(item);
     }
   });
   console.log(filterArray);
-  ///////////////////////////////////////////////////////////////////
-  //using map
-  let mapArray = [];
 
-  filterArray.map(function mapFunc(item) {
-    item = item + 5;
-    mapArray.push(item);
+  //
+  // {
+  //   _id: new ObjectId("6433bcfbaf46095e17252693"),
+  //   myid: 88,
+  //   name: 'Shad Phelps',
+  //   email: 'morbi@hotmail.ca',
+  //   age: 38,
+  //   country: 'Chile'
+  // }
+  //
+  //return new object of array with only _id and name
+  let mapArray = filterArray.map(function (item) {
+    let _id = item._id;
+    let name = item.name;
+    //returning a new object with only the _id and name properties
+    return { _id, name };
   });
+
+  //
   console.log(mapArray);
-  // ///////////////////////////////////////////////////////////////////////
-  // // reduce
-
-  let reduceValue = mapArray.reduce(function (accu, current) {
-    accu = accu + current;
-    return accu;
-  });
-
-  console.log(reduceValue);
-
+  //{
+  //   _id: new ObjectId("6433bcfbaf46095e17252693"),
+  //   name: 'Shad Phelps'
+  // }
   res.send(allStudents);
 });
 
