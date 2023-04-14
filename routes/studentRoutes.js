@@ -25,7 +25,7 @@ router.post("/insert-all", async (req, res) => {
   res.send(result);
 });
 
-// Write a function that takes an array of objects as an argument and returns a new array of objects where the '_id' and 'name' properties are combined into a single property called 'fullName'
+// 'name' property is formatted to title case
 
 //get request-- test route
 router.get("/test", async (req, res) => {
@@ -38,17 +38,32 @@ router.get("/test", async (req, res) => {
 
   allStudents.filter(function (item) {
     if (item.age > 35) {
+      //ei line e destructuring and spread both use hocche
+      const { _id, name, ...rest } = item;
+      const fullName = `${_id} ${name}`;
       //
+      let newItem = { fullName, ...rest };
 
-      let newItem = {
-        _id: item._id,
-        myidAndName: `${item.myid} and ${item.name}`,
-        // name: item.name,
-        email: item.email,
-        age: item.age,
-        country: item.country,
-      };
+      // eta korle rest portion ta ekta same object e thakbe, nicher tar moto nested object e noi
+      //{
+      //   fullName: '6433bcfbaf46095e1725267b Salvador Reeves',
+      //   myid: 64,
+      //   email: 'semper@yahoo.net',
+      //   age: 37,
+      //   country: 'Brazil'
+      // }
 
+      // eta korle rest portion ta ekta nested object e thakbe
+      // let newItem = { fullName, rest };
+      // {
+      //   fullName: '6433bcfbaf46095e17252653 Lacota Hernandez',
+      //   rest: {
+      //     myid: 24,
+      //     email: 'leo.morbi@icloud.org',
+      //     age: 38,
+      //     country: 'Italy'
+      //   }
+      // }
       filterArray.push(newItem);
     }
   });
