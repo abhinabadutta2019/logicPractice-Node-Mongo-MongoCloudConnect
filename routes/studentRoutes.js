@@ -25,7 +25,7 @@ router.post("/insert-all", async (req, res) => {
   res.send(result);
 });
 
-// Write a function that takes an array of objects as an argument and returns a new array of objects where the properties 'myid' and 'age' are swapped.
+// Write a function that takes an array of objects as an argument and returns a new array of objects where the '_id' and 'name' properties are combined into a single property called 'fullName'
 
 //get request-- test route
 router.get("/test", async (req, res) => {
@@ -39,16 +39,17 @@ router.get("/test", async (req, res) => {
   allStudents.filter(function (item) {
     if (item.age > 35) {
       //
-      let swapped = {
-        _id: item.email, //swapped
-        myid: item.myid,
-        name: item.name,
-        email: item._id, //swapped
+
+      let newItem = {
+        _id: item._id,
+        myidAndName: `${item.myid} and ${item.name}`,
+        // name: item.name,
+        email: item.email,
         age: item.age,
         country: item.country,
       };
 
-      filterArray.push(swapped);
+      filterArray.push(newItem);
     }
   });
 
@@ -59,13 +60,5 @@ router.get("/test", async (req, res) => {
 });
 
 //output
-// {
-//   _id: 'semper@yahoo.net',
-//   myid: 64,
-//   name: 'Salvador Reeves',
-//   email: new ObjectId("6433bcfbaf46095e1725267b"),
-//   age: 37,
-//   country: 'Brazil'
-// }
 
 module.exports = router;
