@@ -37,7 +37,7 @@ router.get("/test", async (req, res) => {
   let filterArray = [];
 
   allStudents.filter(function (item) {
-    if (item.country === "Chile") {
+    if (item.email.includes("proton")) {
       filterArray.push(item);
     }
   });
