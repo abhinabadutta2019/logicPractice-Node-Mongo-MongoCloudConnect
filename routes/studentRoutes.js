@@ -33,35 +33,28 @@ router.get("/test", async (req, res) => {
   let allStudents = await collection.find({}).toArray();
 
   //using filter
-  let filterArray = [];
+  let mapArray = [];
 
-  allStudents.filter(function filterFunc(item) {
-    if (item.age > 37) {
-      //
+  allStudents.map(function mapFunc(item) {
+    //
 
-      //
-      const { _id, name, ...rest } = item;
+    //
+    const { _id, name } = item;
 
-      //
-      filterArray.push({ _id, name, rest });
+    //
+    mapArray.push({ _id, name });
 
-      //filterArray.push(item)
-      //
-    }
+    //filterArray.push(item)
+    //
   });
+
   //output
   // {
-  //   _id: new ObjectId("6433bcfbaf46095e1725266e"),
-  //   name: 'Sharon Battle',
-  //   rest: {
-  //     myid: 51,
-  //     email: 'quam.pellentesque@protonmail.ca',
-  //     age: 38,
-  //     country: 'Chile'
-  //   }
+  //   _id: new ObjectId("6433bcfbaf46095e17252693"),
+  //   name: 'Shad Phelps'
   // }
 
-  console.log(filterArray);
+  console.log(mapArray);
 
   res.send(allStudents);
 });
