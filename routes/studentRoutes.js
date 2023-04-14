@@ -25,7 +25,7 @@ router.post("/insert-all", async (req, res) => {
   res.send(result);
 });
 
-// Write a function that takes an array of objects as an argument and returns an object that has the properties '_id' and 'name' as its own properties and the rest of the properties from the objects in the array as properties of a nested object called 'rest'
+// Write a function that takes an array of objects as an argument and returns a new array of objects where the properties 'myid' and 'age' are swapped.
 
 //get request-- test route
 router.get("/test", async (req, res) => {
@@ -38,7 +38,12 @@ router.get("/test", async (req, res) => {
 
   allStudents.filter(function (item) {
     if (item.age > 35) {
-      filterArray.push(item.email.toUpperCase());
+      const { _id, name } = item;
+      const fields = ["_id", "email"];
+      const { [fields[0]]: fullName, [fields[1]]: id } = item;
+      // console.log([fields[0]]);
+
+      filterArray.push({ id, fullName });
     }
   });
 
@@ -49,18 +54,5 @@ router.get("/test", async (req, res) => {
 });
 
 //output
-// [
-//   'AMET.MASSA@PROTONMAIL.COUK',
-//   'DONEC.FELIS@AOL.CA',
-//   'SEM.EGET.MASSA@ICLOUD.COM',
-//   'TINCIDUNT.ORCI@ICLOUD.EDU',
-//   'MORBI@HOTMAIL.CA',
-//   'MORBI.QUIS.URNA@YAHOO.COM',
-//   'NONUMMY.AC@YAHOO.COM',
-//   'VELIT.EGESTAS.LACINIA@GOOGLE.COUK',
-//   'LEO.MORBI@ICLOUD.ORG',
-//   'QUAM.PELLENTESQUE@PROTONMAIL.CA',
-//   'SEMPER@YAHOO.NET'
-// ]
 
 module.exports = router;
