@@ -25,6 +25,8 @@ router.post("/insert-all", async (req, res) => {
   res.send(result);
 });
 
+// Write a function that takes an array of objects as an argument and returns a new array of objects where the 'age' property is greater than 35.
+
 //get request-- test route
 router.get("/test", async (req, res) => {
   const collection = mongoose.connection.collection("mongo-students");
@@ -32,31 +34,20 @@ router.get("/test", async (req, res) => {
   //allStudents array output
   let allStudents = await collection.find({}).toArray();
 
-  //using filter
-  let mapArray = [];
+  let filterArray = [];
 
-  allStudents.map(function mapFunc(item) {
-    //
-
-    //
-    const { _id, name } = item;
-
-    //
-    mapArray.push({ _id, name });
-
-    //filterArray.push(item)
-    //
+  allStudents.filter(function (item) {
+    if (item.age > 35) {
+      filterArray.push(item);
+    }
   });
 
-  //output
-  // {
-  //   _id: new ObjectId("6433bcfbaf46095e17252693"),
-  //   name: 'Shad Phelps'
-  // }
-
-  console.log(mapArray);
-
+  //
+  console.log(filterArray);
+  //
   res.send(allStudents);
 });
+
+//output
 
 module.exports = router;
