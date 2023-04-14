@@ -25,7 +25,7 @@ router.post("/insert-all", async (req, res) => {
   res.send(result);
 });
 
-// Write a function that takes an array of objects as an argument and returns a new array of objects where the 'age' property is greater than 35.
+// Write a function that takes an array of objects as an argument and returns a new array of objects where the 'country' property is equal to 'Chile'.
 
 //get request-- test route
 router.get("/test", async (req, res) => {
@@ -37,7 +37,7 @@ router.get("/test", async (req, res) => {
   let filterArray = [];
 
   allStudents.filter(function (item) {
-    if (item.age > 35) {
+    if (item.country === "Chile") {
       filterArray.push(item);
     }
   });
