@@ -38,19 +38,17 @@ router.get("/test", async (req, res) => {
 
   allStudents.filter(function (item) {
     if (item.age > 35) {
-      // const { _id, name } = item;
-      const fields = ["_id", "email"];
-      const {
-        [fields[0]]: email,
-        [fields[1]]: id,
-        myid,
-        name,
-        age,
-        country,
-      } = item;
-      // console.log([fields[0]]);
+      //
+      let swapped = {
+        _id: item.email, //swapped
+        myid: item.myid,
+        name: item.name,
+        email: item._id, //swapped
+        age: item.age,
+        country: item.country,
+      };
 
-      filterArray.push({ id, myid, name, name, email, age, country });
+      filterArray.push(swapped);
     }
   });
 
@@ -62,7 +60,7 @@ router.get("/test", async (req, res) => {
 
 //output
 // {
-//   id: 'semper@yahoo.net',
+//   _id: 'semper@yahoo.net',
 //   myid: 64,
 //   name: 'Salvador Reeves',
 //   email: new ObjectId("6433bcfbaf46095e1725267b"),
