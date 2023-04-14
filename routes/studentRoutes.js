@@ -25,7 +25,8 @@ router.post("/insert-all", async (req, res) => {
   res.send(result);
 });
 
-// 'name' property is formatted to title case
+// 'email' property is formatted to title case, "." er por
+// from this 'sem.eget.massa@icloud.com' to this ---'Sem.Eget.Massa@icloud.Com'
 
 //get request-- test route
 router.get("/test", async (req, res) => {
@@ -39,31 +40,25 @@ router.get("/test", async (req, res) => {
   allStudents.filter(function (item) {
     if (item.age > 35) {
       //ei line e destructuring and spread both use hocche
-      const { _id, name, ...rest } = item;
-      const fullName = `${_id} ${name}`;
+
+      let { email, ...rest } = item;
       //
-      let newItem = { fullName, ...rest };
+      let emailArr = email.split(/[.]/);
+      // console.log(emailArr);
+      // [ 'amet', 'massa@protonmail', 'couk' ]
+      let mapEmailArr = [];
+      emailArr.map(function (item) {
+        item = item.charAt(0).toUpperCase() + item.slice(1);
+        mapEmailArr.push(item);
+      });
+      // console.log(mapEmailArr);
+      // [ 'Quam', 'Pellentesque@protonmail', 'Ca' ]
+      let newJoinString = mapEmailArr.join(".");
 
-      // eta korle rest portion ta ekta same object e thakbe, nicher tar moto nested object e noi
-      //{
-      //   fullName: '6433bcfbaf46095e1725267b Salvador Reeves',
-      //   myid: 64,
-      //   email: 'semper@yahoo.net',
-      //   age: 37,
-      //   country: 'Brazil'
-      // }
-
-      // eta korle rest portion ta ekta nested object e thakbe
-      // let newItem = { fullName, rest };
-      // {
-      //   fullName: '6433bcfbaf46095e17252653 Lacota Hernandez',
-      //   rest: {
-      //     myid: 24,
-      //     email: 'leo.morbi@icloud.org',
-      //     age: 38,
-      //     country: 'Italy'
-      //   }
-      // }
+      // console.log(newJoinString);
+      //Amet.Massa@protonmail.Couk
+      //
+      newItem = { newJoinString, ...rest };
       filterArray.push(newItem);
     }
   });
