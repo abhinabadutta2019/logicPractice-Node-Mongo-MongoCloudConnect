@@ -38,8 +38,7 @@ router.get("/test", async (req, res) => {
 
   allStudents.filter(function (item) {
     if (item.age > 35) {
-      const { _id, name, ...rest } = item;
-      filterArray.push({ _id, name, rest });
+      filterArray.push(item.email.toUpperCase());
     }
   });
 
@@ -50,10 +49,18 @@ router.get("/test", async (req, res) => {
 });
 
 //output
-// {
-//   _id: new ObjectId("6433bcfbaf46095e1725267b"),
-//   name: 'Salvador Reeves',
-//   rest: { myid: 64, email: 'semper@yahoo.net', age: 37, country: 'Brazil' }
-// }
+// [
+//   'AMET.MASSA@PROTONMAIL.COUK',
+//   'DONEC.FELIS@AOL.CA',
+//   'SEM.EGET.MASSA@ICLOUD.COM',
+//   'TINCIDUNT.ORCI@ICLOUD.EDU',
+//   'MORBI@HOTMAIL.CA',
+//   'MORBI.QUIS.URNA@YAHOO.COM',
+//   'NONUMMY.AC@YAHOO.COM',
+//   'VELIT.EGESTAS.LACINIA@GOOGLE.COUK',
+//   'LEO.MORBI@ICLOUD.ORG',
+//   'QUAM.PELLENTESQUE@PROTONMAIL.CA',
+//   'SEMPER@YAHOO.NET'
+// ]
 
 module.exports = router;
