@@ -25,7 +25,7 @@ router.post("/insert-all", async (req, res) => {
   res.send(result);
 });
 
-//Write a function that takes an array of objects as an argument and returns the number of objects in the array where the 'email' property contains the string 'protonmail' and the 'age' property is greater than 35.
+//Write a function that takes an array of objects as an argument and returns an array of objects where the '_id' and 'name' properties are combined into a single property called 'fullName' and the rest of the properties are included in a nested object called 'details'.
 
 //get request-- test route
 router.get("/test", async (req, res) => {
@@ -37,10 +37,17 @@ router.get("/test", async (req, res) => {
   let filterArray = [];
 
   allStudents.filter(function (item) {
-    if (item.email.includes("proton") && item.age > 35) {
-      //ei line e destructuring and spread both use hocche
+    if (item.myid > 95) {
+      item.age = item.age * 2;
+      item.myid = item.myid / 2;
 
-      filterArray.push(item);
+      let newItem = {
+        _id: item._id,
+        myid: item.myid,
+        age: item.age,
+        name: item.name,
+      };
+      filterArray.push(newItem);
     }
   });
 
