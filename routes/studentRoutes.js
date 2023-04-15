@@ -35,30 +35,32 @@ router.get("/test", async (req, res) => {
   let allStudents = await collection.find({}).toArray();
 
   let filterArray = [];
+  //
+  let ageCount = 0;
+  //
+  let chileCount = 0;
 
-  function countProperties(array) {
-    let ageCount = 0;
-    let emailCount = 0;
+  for (let index = 0; index < allStudents.length; index++) {
+    //if age >36
+    if (allStudents[index].age > 36) {
+      ageCount = ageCount + 1;
+      // filterArray.push(allStudents[index]);
+    }
 
-    array.forEach((obj) => {
-      if (obj.age > 35) {
-        ageCount++;
-      }
-      if (obj.email.includes("yahoo")) {
-        emailCount++;
-      }
-    });
-
-    return { ageCount, emailCount };
+    //if country===Chile
+    if (allStudents[index].country === "Chile") {
+      chileCount = chileCount + 1;
+      // filterArray.push(allStudents[index]);
+    }
   }
 
-  let result = countProperties(allStudents);
-  console.log(result);
+  console.log(ageCount, "ageCount");
+  console.log(chileCount, "chileCount");
+  // console.log(filterArray.length);
 
   res.send(allStudents);
 });
 
 //output
-// 5 age35filterArray
-// 24 arrayMailWithYahoo
+
 module.exports = router;
