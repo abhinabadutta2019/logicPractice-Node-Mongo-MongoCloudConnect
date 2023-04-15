@@ -25,7 +25,7 @@ router.post("/insert-all", async (req, res) => {
   res.send(result);
 });
 
-//Write a function that takes an array of objects as an argument and returns an array of objects where the '_id' and 'name' properties are combined into a single property called 'fullName' and the rest of the properties are included in a nested object called 'details'.
+//Write a function that takes an array of objects as an argument and returns an object with properties 'ageCount' and 'emailCount' where 'ageCount' is the total number of objects in the array where the 'age' property is greater than 35 and 'emailCount' is the total number of objects in the array where the 'email' property contains the string 'protonmail'.
 
 //get request-- test route
 router.get("/test", async (req, res) => {
@@ -34,40 +34,33 @@ router.get("/test", async (req, res) => {
   //allStudents array output
   let allStudents = await collection.find({}).toArray();
 
-  let filterArray = [];
+  let age35filterArray = [];
+
+  //
+  let arrayMailWithYahoo = [];
 
   allStudents.filter(function (item) {
-    if (item.myid > 95) {
-      item.age = item.age * 2;
-      item.myid = item.myid / 2;
-
-      let newItem = {
-        _id: item._id,
-        myid: item.myid,
-        age: item.age,
-        name: item.name,
-      };
-      filterArray.push(newItem);
+    if (item.age > 36) {
+      age35filterArray.push(item);
     }
   });
 
   //
-  console.log(filterArray, "filterArray");
+  console.log(age35filterArray.length, "age35filterArray");
 
   //output example
 
-  // {
-  //   _id: new ObjectId("6433bcfbaf46095e1725266e"),
-  //   myid: 51,
-  //   name: 'Sharon Battle',
-  //   email: 'quam.pellentesque@protonmail.ca',
-  //   age: 38,
-  //   country: 'Chile'
-  // }
+  allStudents.filter(function (item) {
+    if (item.email.includes("yahoo")) {
+      arrayMailWithYahoo.push(item);
+    }
+  });
+  console.log(arrayMailWithYahoo.length, "arrayMailWithYahoo");
 
   res.send(allStudents);
 });
 
 //output
-
+// 5 age35filterArray
+// 24 arrayMailWithYahoo
 module.exports = router;
