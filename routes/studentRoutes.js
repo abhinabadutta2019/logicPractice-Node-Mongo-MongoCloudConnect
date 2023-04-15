@@ -25,8 +25,7 @@ router.post("/insert-all", async (req, res) => {
   res.send(result);
 });
 
-// 'email' property is formatted to title case, "." er por
-// from this 'sem.eget.massa@icloud.com' to this ---'Sem.Eget.Massa@icloud.Com'
+//Write a function that takes an array of objects as an argument and returns the number of objects in the array where the 'email' property contains the string 'protonmail' and the 'age' property is greater than 35.
 
 //get request-- test route
 router.get("/test", async (req, res) => {
@@ -38,7 +37,7 @@ router.get("/test", async (req, res) => {
   let filterArray = [];
 
   allStudents.filter(function (item) {
-    if (item.myid > 95) {
+    if (item.email.includes("proton") && item.age > 35) {
       //ei line e destructuring and spread both use hocche
 
       filterArray.push(item);
@@ -48,32 +47,16 @@ router.get("/test", async (req, res) => {
   //
   console.log(filterArray, "filterArray");
 
-  // writing sort function
+  //output example
 
-  //method 1
-  // function compare(a, b) {
-  //   if (a.country < b.country) {
-  //     return -1;
-  //   }
-  //   if (a.country > b.country) {
-  //     return 1;
-  //   }
-  //   return 0;
+  // {
+  //   _id: new ObjectId("6433bcfbaf46095e1725266e"),
+  //   myid: 51,
+  //   name: 'Sharon Battle',
+  //   email: 'quam.pellentesque@protonmail.ca',
+  //   age: 38,
+  //   country: 'Chile'
   // }
-  //method 2
-  function compare(a, b) {
-    let comparisonResult = 0;
-    if (a.country < b.country) {
-      comparisonResult = -1;
-    } else if (a.country > b.country) {
-      comparisonResult = 1;
-    }
-    return comparisonResult;
-  }
-  //
-  let sorted = filterArray.sort(compare);
-  console.log(sorted, "sorted");
-  //
 
   res.send(allStudents);
 });
