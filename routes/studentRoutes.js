@@ -38,34 +38,43 @@ router.get("/test", async (req, res) => {
   let filterArray = [];
 
   allStudents.filter(function (item) {
-    if (item.age > 35) {
+    if (item.myid > 95) {
       //ei line e destructuring and spread both use hocche
 
-      let { email, ...rest } = item;
-      //
-      let emailArr = email.split(/[.]/);
-      // console.log(emailArr);
-      // [ 'amet', 'massa@protonmail', 'couk' ]
-      let mapEmailArr = [];
-      emailArr.map(function (item) {
-        item = item.charAt(0).toUpperCase() + item.slice(1);
-        mapEmailArr.push(item);
-      });
-      // console.log(mapEmailArr);
-      // [ 'Quam', 'Pellentesque@protonmail', 'Ca' ]
-      let newJoinString = mapEmailArr.join(".");
-
-      // console.log(newJoinString);
-      //Amet.Massa@protonmail.Couk
-      //
-      newItem = { newJoinString, ...rest };
-      filterArray.push(newItem);
+      filterArray.push(item);
     }
   });
 
   //
-  console.log(filterArray);
+  console.log(filterArray, "filterArray");
+
+  // writing sort function
+
+  //method 1
+  // function compare(a, b) {
+  //   if (a.country < b.country) {
+  //     return -1;
+  //   }
+  //   if (a.country > b.country) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // }
+  //method 2
+  function compare(a, b) {
+    let comparisonResult = 0;
+    if (a.country < b.country) {
+      comparisonResult = -1;
+    } else if (a.country > b.country) {
+      comparisonResult = 1;
+    }
+    return comparisonResult;
+  }
   //
+  let sorted = filterArray.sort(compare);
+  console.log(sorted, "sorted");
+  //
+
   res.send(allStudents);
 });
 
